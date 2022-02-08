@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 import 'src/app.dart';
 import 'src/settings/settings_controller.dart';
@@ -16,5 +17,10 @@ void main() async {
   // Run the app and pass in the SettingsController. The app listens to the
   // SettingsController for changes, then passes it further down to the
   // SettingsView.
-  runApp(MyApp(settingsController: settingsController));
+
+  final client = StreamChatClient(
+    'crt7g7mmnywn', // TODO: insert your Stream app token here.
+    logLevel: Level.INFO,
+  );
+  runApp(MyApp(settingsController: settingsController,client: client,));
 }

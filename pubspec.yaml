@@ -26,10 +26,11 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/rive_stickers.riv
+    - assets/stream_reactions.riv
+    - assets/images/
 
   # Enable generation of localized Strings from arb files.
   generate: true
-
-  assets:
-    # Add assets from the images directory to the application.
-    - assets/images/
+    
