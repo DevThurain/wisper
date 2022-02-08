@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:rive/rive.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
+import 'package:wisper/src/ui/rive/rive_stream_reaction.dart';
 import 'package:wisper/src/ui/users/users_screen.dart';
 
 import 'sample_feature/sample_item_details_view.dart';
@@ -66,9 +68,31 @@ class MyApp extends StatelessWidget {
 
           // Define a function to handle named routes in order to support
           // Flutter web url navigations and deep linking.
-          builder: (context, child) => StreamChat(client: client, child: child),
+          builder: (context, child) => StreamChat(
+            client: client,
+            child: child,
+            streamChatThemeData: StreamChatThemeData(
+              reactionIcons: riveStreamReactionAnimations
+                  .map(
+                    (reaction) => ReactionIcon(
+                      type: reaction.type,
+                      builder: (context, highlighted, size) {
+                        return KeyedSubtree(
+                          key: ValueKey('reaction-${reaction.type}'),
+                          child: RiveAnimation.asset(
+                            'assets/stream_reactions.riv',
+                            artboard: highlighted
+                                ? reaction.artboardHighlighted
+                                : reaction.artboard,
+                          ),
+                        );
+                      },
+                    ),
+                  )
+                  .toList(),
+            ),
+          ),
           home: const UsersScreen(),
-
         );
       },
     );
