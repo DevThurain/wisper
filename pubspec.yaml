@@ -15,8 +15,9 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-  stream_chat_flutter: ^3.3.2 # To add chat functionality
+  stream_chat_flutter: ^3.4.0 # To add chat functionality
   rive: ^0.8.1 # To add animations
+
 
 dev_dependencies:
   flutter_test:
@@ -27,8 +28,6 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/rive_stickers.riv
-    - assets/stream_reactions.riv
     - assets/images/
 
   # Enable generation of localized Strings from arb files.
